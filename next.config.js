@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["localhost"],
+    domains: ["https://apidemostrapi.herokuapp.com"],
   },
   env: {
-    URL_API: "http://localhost:1337",
+    URL_API: "https://apidemostrapi.herokuapp.com",
   },
 };
 
