@@ -24,7 +24,9 @@ const PostPage = ({ postdata }) => {
   return (
     <>
       <div className={style.container__postpage}>
-        <Post key={postdata.id} post={postdata} home={home} />
+        <div className={style.post}>
+          <Post key={postdata.id} post={postdata} home={home} />
+        </div>
       </div>
     </>
   );

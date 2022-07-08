@@ -37,13 +37,12 @@ const Post = ({ post, home }) => {
 
           <p>{post.attributes.content}</p>
 
-          <Image
+          <img
+            className={styles.image__post}
             src={
               process.env.URL_API + post.attributes.photo.data.attributes.url
             }
             alt=""
-            width={100}
-            height={100}
           />
         </>
       )}
