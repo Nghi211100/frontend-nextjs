@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./post.module.css";
 const Post = ({ post, home }) => {
