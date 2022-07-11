@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import Post from "../../components/Post";
 import { getPostById, getIdPost } from "../../lib/post";
@@ -22,6 +23,9 @@ const PostPage = ({ postdata }) => {
   const home = false;
   return (
     <>
+      <Head>
+        <title>Post Page</title>
+      </Head>
       <div className="container xl mx-auto text-center">
         <div>
           <Post key={postdata.id} post={postdata} home={home} />
