@@ -1,5 +1,4 @@
 import { getAllPost } from "../lib/post";
-
 import Post from "../components/Post";
 
 const Home = ({ allpost }) => {
