@@ -23,7 +23,7 @@ const PostPage = ({ postdata }) => {
   const home = false;
   return (
     <>
-      <div className={style.container__postpage}>
+      <div className="container xl mx-auto text-center">
         <div className={style.post}>
           <Post key={postdata.id} post={postdata} home={home} />
         </div>

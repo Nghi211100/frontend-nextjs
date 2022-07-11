@@ -1,6 +1,3 @@
-import Head from "next/head";
-import style from "./index.module.css";
-
 import { getAllPost } from "../lib/post";
 
 import Post from "../components/Post";
@@ -9,9 +6,9 @@ const Home = ({ allpost }) => {
   const home = true;
   return (
     <>
-      <div className={style.container}>
-        <h1 className={style.title}>This is home page</h1>
-        <ul className={style.postlist}>
+      <div className="container xl mx-auto text-center">
+        <h1 className="text-xl font-semibold p-3">All posts</h1>
+        <ul className="shadow rounded-sm p-3">
           {allpost.map((post) => (
             <Post key={post.id} post={post} home={home} />
           ))}
