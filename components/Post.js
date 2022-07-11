@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./post.module.css";
 const Post = ({ post, home }) => {
   return (
@@ -12,6 +11,12 @@ const Post = ({ post, home }) => {
           className={styles.post__content}
         >
           <a>
+            <div className={styles.author}>
+              <p className={styles.fullname}>
+                {post.attributes.author.data.attributes.first_name}{" "}
+                {post.attributes.author.data.attributes.last_name}
+              </p>
+            </div>
             <h2 className={styles.title}>{post.attributes.title}</h2>
             <h4 className={styles.description}>
               {post.attributes.description}
@@ -32,6 +37,12 @@ const Post = ({ post, home }) => {
         </Link>
       ) : (
         <>
+          <div className={styles.author}>
+            <p className={styles.fullname}>
+              {post.attributes.author.data.attributes.first_name}{" "}
+              {post.attributes.author.data.attributes.last_name}
+            </p>
+          </div>
           <h2>{post.attributes.title}</h2>
           <h3>{post.attributes.description}</h3>
 
