@@ -1,5 +1,9 @@
 import Head from "next/head";
 import React from "react";
+import Author from "../../components/Author";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import Menu from "../../components/Menu";
 import Post from "../../components/Post";
 import { getPostById, getIdPost } from "../../lib/post";
 
@@ -20,17 +24,22 @@ export async function getStaticPaths() {
 }
 
 const PostPage = ({ postdata }) => {
-  const home = false;
+  const postpage = false;
   return (
     <>
       <Head>
         <title>Post Page</title>
       </Head>
-      <div className="container xl mx-auto text-center">
-        <div>
-          <Post key={postdata.id} post={postdata} home={home} />
+      <Header postpage={postpage} />
+      <div className="mx-auto text-center flex">
+        <div className="mx-auto text-center mt-20 w-1/2">
+          <h1 className="text-xl font-semibold p-3">Detail Post</h1>
+          <div>
+            <Post key={postdata.id} post={postdata} postpage={postpage} />
+          </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -5,7 +5,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        140: "40rem",
+        100: "28rem",
+      },
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };
