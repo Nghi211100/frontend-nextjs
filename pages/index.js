@@ -6,19 +6,19 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Home = ({ allpost }) => {
-  const postpage = true;
+  const pageType = "home";
 
   return (
     <>
       <Head>
         <title>Home Page</title>
       </Head>
-      <Header postpage={postpage} />
+      <Header pageType={pageType} />
       <div className="mx-4 md:mx-auto justify-center text-center flex md:w-868">
         <div className="md:w-full content-center pt-16 md:mt-0.5">
           <ul>
             {allpost.data.map((post) => (
-              <Post key={post.id} post={post} postpage={postpage} />
+              <Post key={post.id} post={post} pageType={pageType} />
             ))}
           </ul>
           <div className="w-full pb-24 mb-0.5 text-base">

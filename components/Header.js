@@ -1,18 +1,24 @@
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
-const Header = ({ postpage }) => {
+const Header = ({ pageType }) => {
+  const router = useRouter();
   return (
     <>
       <div
         className={
-          postpage == true
+          pageType == "home"
             ? "h-130 md:h-140 bg-orange-50 flex flex-col items-center"
-            : "h-76 md:h-80 bg-red-50 flex flex-col items-center absolute left-0 right-0"
+            : pageType == "detailPost"
+            ? "h-76 md:h-80 bg-red-50 flex flex-col items-center absolute left-0 right-0 top-0"
+            : pageType == "author"
+            ? "h-[10.5rem] md:h-80 bg-red-50 flex flex-col items-center absolute left-0 right-0 top-0"
+            : ""
         }
       >
-        <div className={postpage == true ? "pt-10" : "pt-9 md:pt-11"}>
-          {postpage == true ? (
+        <div className={pageType == "home" ? "pt-10" : "pt-9 md:pt-11"}>
+          {pageType == "home" ? (
             <div className="flex justify-center pt-10 md:pt-10 pb-12 md:pb-14">
               <img
                 src="/images/image_header.jpg"
@@ -24,14 +30,14 @@ const Header = ({ postpage }) => {
           )}
           <h1
             className={
-              postpage == true
+              pageType == "home"
                 ? "font-mono text-5xl md:text-6xl font-black text-center tracking-tighter mb-10 md:mb-11"
                 : "font-mono text-3xl md:text-4.5xl font-black text-center tracking-tighter mb-1 md:mb-3"
             }
           >
             Demo Project
           </h1>
-          {postpage == true ? (
+          {pageType == "home" ? (
             <p
               className={
                 "font-mono text-4xl md:text-4.5xl text-center tracking-tighter mb-11 md:mb-12 text-zinc-700 px-8 md:px-0"
@@ -45,21 +51,41 @@ const Header = ({ postpage }) => {
         </div>
         <div
           className={
-            postpage == true
+            pageType == "home"
               ? "text-xl text-black flex justify-between md:w-1/4"
               : "text-base w-3/5 text-black flex justify-between md:w-1/4 md:text-xl"
           }
         >
           <Link href="/">
-            <a className="px-2 py-1 hover:rounded-2xl hover:bg-red-100">Blog</a>
+            <a
+              className={
+                router.pathname == "/"
+                  ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                  : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+              }
+            >
+              Blog
+            </a>
           </Link>
           <Link href="/author">
-            <a className="px-2 py-1 hover:rounded-2xl hover:bg-red-100">
+            <a
+              className={
+                router.pathname == "/author"
+                  ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                  : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+              }
+            >
               Author
             </a>
           </Link>
           <Link href="/about">
-            <a className="px-2 py-1 hover:rounded-full hover:bg-red-100 z-50">
+            <a
+              className={
+                router.pathname == "/about"
+                  ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                  : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+              }
+            >
               About
             </a>
           </Link>

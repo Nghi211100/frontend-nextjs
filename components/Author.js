@@ -1,18 +1,50 @@
 import Link from "next/link";
 import React from "react";
+import Date from "./Date";
 
-const Author = ({ allauthors }) => {
+const Author = ({ authordata }) => {
+  console.log(authordata.attributes.photo.data.attributes);
+  let postCount = 0;
+  authordata.attributes.posts.data.map(() => {
+    postCount++;
+  });
   return (
     <>
-      <div className="w-1/4 flex flex-col fixed right-0 top-16 items-center justify-center">
-        <div className="font-bold text-xl w-full text-left p-5">Authors</div>
-        {allauthors.data.map((x) => (
-          <Link href={`/category/${x.id}`} key={x.id}>
-            <a className="text-lg p-3 w-full hover:bg-cyan-300 hover:text-white border-b border-slate-200 last:border-none">
-              {x.attributes.first_name} {x.attributes.last_name}
-            </a>
-          </Link>
-        ))}
+      <div className="flex mx-3 my-3">
+        <Link key={authordata.id} href={`/author/${authordata.id}`}>
+          <a className="w-full">
+            <div className="">
+              <div className="flex flex-col md:flex-row md:py-8 text-center items-center justify-center">
+                <div className="flex">
+                  <img
+                    className="w-[100px] h-[100px] rounded-[50%] shadow-[4px_4px_0px_rgb(0,0,0,10%)]"
+                    src={
+                      process.env.URL_API +
+                      authordata.attributes.photo.data.attributes.url
+                    }
+                    alt=""
+                  />
+                </div>
+                <div className="md:w-1/3 flex md:justify-between">
+                  <div className="flex font-bold md:pl-5">
+                    {authordata.attributes.first_name}{" "}
+                    {authordata.attributes.last_name}
+                  </div>
+                </div>
+                <div className="flex flex-col items-center md:text-left">
+                  <div className="flex text-sm text-gray-600">
+                    <label className="pr-2">Join on: </label>
+                    <Date dateString={authordata.attributes.createdAt} />
+                  </div>
+                  <div className="flex text-sm text-gray-600">
+                    <label className="pr-2">Total Posts: </label>
+                    {postCount}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </Link>
       </div>
     </>
   );

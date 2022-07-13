@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Date from "./Date";
-const Post = ({ post, postpage }) => {
+const Post = ({ post, pageType }) => {
+  console.log(post);
   return (
     <>
-      {postpage == true ? (
+      {pageType == "home" ? (
         <div className="flex pb-24 md:mb-0.5">
           <Link key={post.id} href={`/blog/${post.id}`}>
             <a className="w-full flex-col md:flex-row flex h-full md:h-68 md:justify-between">
