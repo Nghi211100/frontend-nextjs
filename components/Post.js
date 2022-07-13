@@ -52,7 +52,7 @@ const Post = ({ post, postpage }) => {
           <div className="pb-4">
             <div className="flex justify-center h-59 md:h-[620px] mx-4">
               <img
-                className="w-auto h-auto max-h-full rounded shadow-[4px_4px_0px_rgb(0,0,0,10%)] md:shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
+                className="z-[99] w-auto h-auto max-h-full rounded shadow-[4px_4px_0px_rgb(0,0,0,10%)] md:shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
                 src={
                   process.env.URL_API +
                   post.attributes.photo.data.attributes.url

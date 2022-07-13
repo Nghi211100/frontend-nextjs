@@ -8,7 +8,7 @@ const Header = ({ postpage }) => {
         className={
           postpage == true
             ? "h-130 md:h-140 bg-orange-50 flex flex-col items-center"
-            : "h-76 md:h-80 bg-red-50 flex flex-col items-center absolute left-0 right-0 -z-10"
+            : "h-76 md:h-80 bg-red-50 flex flex-col items-center absolute left-0 right-0"
         }
       >
         <div className={postpage == true ? "pt-10" : "pt-9 md:pt-11"}>
@@ -59,7 +59,7 @@ const Header = ({ postpage }) => {
             </a>
           </Link>
           <Link href="/about">
-            <a className="px-2 py-1 hover:rounded-full hover:bg-red-100">
+            <a className="px-2 py-1 hover:rounded-full hover:bg-red-100 z-50">
               About
             </a>
           </Link>
