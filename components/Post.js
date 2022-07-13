@@ -3,12 +3,12 @@ import Link from "next/link";
 import Date from "./Date";
 const Post = ({ post, postpage }) => {
   return (
-    <div className="flex py-3 border-b boder-solid md:p-5">
+    <>
       {postpage == true ? (
-        <>
+        <div className="flex pb-24 md:mb-0.5">
           <Link key={post.id} href={`/blog/${post.id}`}>
-            <a className="w-full flex-col md:flex-row flex h-full md:h-60">
-              <div className="w-full md:w-1/2 h-full flex justify-center md:pr-5">
+            <a className="w-full flex-col md:flex-row flex h-full md:h-68 md:justify-between">
+              <div className="w-full md:w-408 h-full flex justify-center">
                 <img
                   className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
                   src={
@@ -18,68 +18,102 @@ const Post = ({ post, postpage }) => {
                   alt=""
                 />
               </div>
-              <div className="w-full md:w-1/2 h-full md:relative">
-                <p className="w-max text-slate-500 pt-3 md:pt-0">
+              <div className="w-full md:w-408 h-full md:relative pt-4 md:pt-0">
+                <p className="w-max text-slate-500 pt-3 md:pt-0 flex pb-4 md:pb-3.5">
                   {post.attributes.categories.data.map(
                     (x) => x.attributes.category_name
                   )}
                 </p>
-                <div className="pb-4 text-left pb-2">
-                  <h1 className="text-2xl font-bold pb-2">
+                <div className="text-left pb-6">
+                  <h1 className="text-2xl font-bold pb-4 md:text-4xl">
                     {post.attributes.title}
                   </h1>
 
-                  <p>{post.attributes.content.substring(0, 100)}...</p>
+                  <p className="text-lg text-slate-500">
+                    {post.attributes.content.substring(0, 100)}...
+                  </p>
                 </div>
-                <div className="text-sm text-slate-500 pl-1 flex bottom-0 md:absolute">
-                  <p className="text-lg text-cyan-400 py-auto my-auto pr-1">
+                <div className=" pl-1 flex bottom-0 md:absolute mb-2">
+                  <p className="text-lg py-auto my-auto pr-1">
                     {post.attributes.author.data.attributes.first_name}{" "}
                     {post.attributes.author.data.attributes.last_name}{" "}
                   </p>
 
-                  <p className="py-auto my-auto">
-                    {" - "}
+                  <p className="text-slate-500 text-lg py-auto my-auto">
                     <Date dateString={post.attributes.createdAt} />
                   </p>
                 </div>
               </div>
             </a>
           </Link>
-        </>
+        </div>
       ) : (
-        <>
+        <div className="md:mb-0.5 ">
           <div className="pb-4">
-            <div className="flex item-center pb-4 ">
-              <p className="text-xl text-cyan-400 py-auto my-auto">
-                {post.attributes.author.data.attributes.first_name}{" "}
-                {post.attributes.author.data.attributes.last_name}{" "}
-              </p>
-              <p className="text-sm text-slate-500 pl-1 my-auto mr-auto">
-                {"- "}
-                <Date dateString={post.attributes.createdAt} />
-              </p>
-              <p className=" bg-slate-300 rounded-md p-2">
+            <div className="flex justify-center h-59 md:h-[620px] mx-4">
+              <img
+                className="w-auto h-auto max-h-full rounded shadow-[4px_4px_0px_rgb(0,0,0,10%)] md:shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
+                src={
+                  process.env.URL_API +
+                  post.attributes.photo.data.attributes.url
+                }
+                alt=""
+              />
+            </div>
+            <div className="flex justify-center flex-col items-center mx-4 md:mx-64">
+              <p className="pt-12 mt-1.5 text-gray-500">
                 {post.attributes.categories.data.map(
                   (x) => x.attributes.category_name
                 )}
               </p>
+              <h4 className="text-4.5xl md:text-5xl font-bold pt-9 pb-7 md:pb-10 md:mb-0 mb-0.5">
+                {post.attributes.title}
+              </h4>
+              <h4 className="text-xl md:text-2xl text-gray-500">
+                {post.attributes.description}
+              </h4>
+              <div className="pt-9 flex justify-center w-full items-center text-center">
+                <div className="text-lg py-auto my-auto mx-4">
+                  {post.attributes.author.data.attributes.first_name}{" "}
+                  {post.attributes.author.data.attributes.last_name}{" "}
+                </div>
+                <div className="text-lg text-slate-500 pl-1 my-auto">
+                  <Date dateString={post.attributes.createdAt} />
+                </div>
+              </div>
+              <p className="pt-[4.5rem] md:text-lg text-left">
+                {post.attributes.content}
+              </p>
+              <div className="w-full md:w-408 h-full flex justify-center pt-12">
+                <img
+                  className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
+                  src={
+                    process.env.URL_API +
+                    post.attributes.photo.data.attributes.url
+                  }
+                  alt=""
+                />
+              </div>
             </div>
-            <h4>{post.attributes.description}</h4>
-
-            <p>{post.attributes.content}</p>
+            <div className="pt-[6rem] mx-[3rem] pb-[8rem]">
+              <p className="text-lg font-bold pb-3">Share this post</p>
+              <div className="flex justify-center">
+                <p>Twitter</p>
+                <p className="px-3">Facebook</p>
+                <p className="px-3">Pinterest</p>
+                <p className="px-3">Zalo</p>
+              </div>
+            </div>
+            <div className="border-t-2 border-solid mx-32 md:mx-[34rem] mb-[6rem]"></div>
+            <div className="text-base pb-11">Written by</div>
+            <div className="text-2xl font-bold py-auto my-auto mb-[6rem]">
+              {post.attributes.author.data.attributes.first_name}{" "}
+              {post.attributes.author.data.attributes.last_name}{" "}
+            </div>
           </div>
-          <div className="shadow rounded-sm flex justify-center max-h-96 h-auto bg-slate-300">
-            <img
-              className="max-h-96"
-              src={
-                process.env.URL_API + post.attributes.photo.data.attributes.url
-              }
-              alt=""
-            />
-          </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,11 +1,11 @@
-import { getAllPost, getCategories, getAuthors } from "../lib/post";
+import { getAllPost } from "../lib/post";
 import Post from "../components/Post";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Home = ({ allpost, allcategories, allauthors }) => {
+const Home = ({ allpost }) => {
   const postpage = true;
 
   return (
@@ -13,15 +13,15 @@ const Home = ({ allpost, allcategories, allauthors }) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      <Header />
-      <div className="mx-auto justify-center text-center flex">
-        <div className="content-center md:w-3/4 pt-5 md:pt-20">
-          <ul className="p-3">
+      <Header postpage={postpage} />
+      <div className="mx-4 md:mx-auto justify-center text-center flex md:w-868">
+        <div className="md:w-full content-center pt-16 md:mt-0.5">
+          <ul>
             {allpost.data.map((post) => (
               <Post key={post.id} post={post} postpage={postpage} />
             ))}
           </ul>
-          <div className="w-full p-3 ">
+          <div className="w-full pb-24 mb-0.5 text-base">
             {[...Array(allpost.meta.pagination.pageCount).keys()].map((x) => (
               <Link key={x + 1} href={`/?page=${x + 1}`}>
                 <a
@@ -48,13 +48,9 @@ export async function getServerSideProps({ query }) {
   let { page } = query;
   page ? (page = page) : (page = 1);
   const allpost = await getAllPost(page);
-  const allcategories = await getCategories();
-  const allauthors = await getAuthors();
   return {
     props: {
       allpost: allpost,
-      allcategories: allcategories,
-      allauthors: allauthors,
     },
   };
 }

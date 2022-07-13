@@ -31,9 +31,8 @@ const PostPage = ({ postdata }) => {
         <title>Post Page</title>
       </Head>
       <Header postpage={postpage} />
-      <div className="mx-auto text-center flex">
-        <div className="mx-auto text-center mt-20 w-1/2">
-          <h1 className="text-xl font-semibold p-3">Detail Post</h1>
+      <div className="mx-auto text-center justify-center flex pt-ab-header md:pt-44 md:mt-0.5 z-10">
+        <div className="mx-auto text-center">
           <div>
             <Post key={postdata.id} post={postdata} postpage={postpage} />
           </div>

@@ -7,8 +7,18 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        140: "40rem",
-        100: "28rem",
+        868: "868px",
+        408: "408px",
+        140: "43rem",
+        130: "40rem",
+        180: "180px",
+        68: "17rem",
+        "ab-header": "10rem",
+        76: "304px",
+        59: "14.95rem",
+      },
+      fontSize: {
+        "4.5xl": "2.5rem",
       },
     },
   },
