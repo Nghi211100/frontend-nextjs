@@ -11,15 +11,15 @@ const Footer = ({ lang }) => {
           <div className="text-[17px] text-slate-800 pb-[1.45rem] md:pb-[1.7rem] md:text-[19px]">
             Subcribers also get access to extra member-only content.
           </div>
-          <button className="border border-solid border-[#d8d8d8] rounded-[0.2rem] text-[18px] font-bold mx-auto py-2 md:py-[0.63rem] px-4 w-max shadow-[0px_2px_10px_rgb(0,0,0,6%)]">
-            Subcribe now
+          <button className="border border-solid border-[#d8d8d8] rounded-[0.2rem] md:text-[19px] text-[18px] font-bold mx-auto py-2 md:py-[0.63rem] px-5 w-max shadow-[0px_2px_10px_rgb(0,0,0,6%)]">
+            Subscribe now
           </button>
           <div className="text-[15px] text-zinc-500 pt-6 md:pt-[1.4rem] pb-1">
             Unsubcribe any at time.
           </div>
         </div>
 
-        <div className="md:w-1/2 flex flex-col px-4 md:px-0 py-12 md:py-11 justify-center text-slate-800  border-t border-[#d8d8d8] border-solid md:border-t-0 md:border-r">
+        <div className="md:w-1/2 flex flex-col px-4 md:px-0 py-[3.08rem] md:py-11 justify-center text-slate-800  border-t border-[#d8d8d8] border-solid md:border-t-0 md:border-r">
           <div className="pb-[1.4rem] text-[22px] font-bold md:font md:text-[1.8rem]">
             Range Theme
           </div>
@@ -41,7 +41,7 @@ const Footer = ({ lang }) => {
             <p className="text-[15px] w-max tracking-wide leading-5 border-b border-solid border-[#e9e9e9]">
               © <b>Range Theme </b> 2022.
             </p>
-            <p className="text-[14px] w-max tracking-wide leading-5 border-b border-solid border-[#e9e9e9]">
+            <p className="text-[13px] md:text-[14px] w-max tracking-wide leading-5 border-b border-solid border-[#e9e9e9]">
               Published with Range and Ghost
             </p>
           </div>

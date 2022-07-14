@@ -25,7 +25,7 @@ const Header = ({ pageType, lang }) => {
           pageType == "home"
             ? "h-[665px] md:h-[718px] bg-[#FDF9F6] flex flex-col items-center"
             : pageType == "detailPost"
-            ? "h-76 md:h-80 bg-[#FDF9F6] flex flex-col items-center absolute left-0 right-0 top-0"
+            ? "h-[328px] md:h-[347px] bg-[#FDF9F6] flex flex-col items-center absolute left-0 right-0 top-0"
             : pageType == "author"
             ? "h-[10.5rem] md:h-80 bg-[#FDF9F6] flex flex-col items-center absolute left-0 right-0 top-0"
             : ""
@@ -49,7 +49,7 @@ const Header = ({ pageType, lang }) => {
               className={
                 pageType == "home"
                   ? "font-mono text-5xl md:text-6xl font-black text-center tracking-tighter mb-[2.4rem] md:mb-[2.8rem]"
-                  : "font-mono text-3xl md:text-4.5xl font-black text-center tracking-tighter mb-1 md:mb-3"
+                  : "font-mono text-3xl md:text-4.5xl font-black text-center tracking-tighter mb-1 md:mb-[0.6rem]"
               }
             >
               {lang.Demo_Project}
@@ -70,7 +70,7 @@ const Header = ({ pageType, lang }) => {
             className={
               pageType == "home"
                 ? "text-[1.15rem] text-center md:text-xl text-black flex justify-center gap-4 md:w-[45%] mx-auto"
-                : "text-base w-3/5 text-black flex justify-between md:text-xl"
+                : "text-[1.15rem] text-center md:text-xl text-black flex justify-center gap-4 md:w-[45%] mx-auto"
             }
           >
             <Link href="/">
@@ -110,7 +110,7 @@ const Header = ({ pageType, lang }) => {
           <div className="md:pt-1">
             <FontAwesomeIcon
               icon={faSearch}
-              style={{ fontSize: 15, color: "black" }}
+              style={{ fontSize: 17, color: "black" }}
             />
           </div>
         </div>
