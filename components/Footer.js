@@ -19,7 +19,7 @@ const Footer = ({ lang }) => {
           </div>
         </div>
 
-        <div className="md:w-1/2 flex flex-col px-4 py-12 md:py-11 justify-center text-slate-800  border-t border-[#d8d8d8] border-solid md:border-t-0 md:border-r">
+        <div className="md:w-1/2 flex flex-col px-4 md:px-0 py-12 md:py-11 justify-center text-slate-800  border-t border-[#d8d8d8] border-solid md:border-t-0 md:border-r">
           <div className="pb-[1.4rem] text-[22px] font-bold md:font md:text-[1.8rem]">
             Range Theme
           </div>
