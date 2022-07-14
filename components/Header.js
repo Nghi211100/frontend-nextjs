@@ -2,10 +2,22 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 
-const Header = ({ pageType }) => {
+const Header = ({ pageType, lang }) => {
   const router = useRouter();
   return (
     <>
+      <div className="absolute top-0 right-8 w-16 flex justify-between z-[99]">
+        <Link href={router.asPath} locale="en">
+          <a className={router.locale == "en" ? "font-bold text-cyan-500" : ""}>
+            EN
+          </a>
+        </Link>
+        <Link href={router.asPath} locale="vn">
+          <a className={router.locale == "vn" ? "font-bold text-cyan-500" : ""}>
+            VN
+          </a>
+        </Link>
+      </div>
       <div
         className={
           pageType == "home"
@@ -17,7 +29,9 @@ const Header = ({ pageType }) => {
             : ""
         }
       >
-        <div className={pageType == "home" ? "pt-10" : "pt-9 md:pt-11"}>
+        <div
+          className={pageType == "home" ? "pt-10 relative" : "pt-9 md:pt-11 "}
+        >
           {pageType == "home" ? (
             <div className="flex justify-center pt-10 md:pt-10 pb-12 md:pb-14">
               <img
@@ -35,7 +49,7 @@ const Header = ({ pageType }) => {
                 : "font-mono text-3xl md:text-4.5xl font-black text-center tracking-tighter mb-1 md:mb-3"
             }
           >
-            Demo Project
+            {lang.Demo_Project}
           </h1>
           {pageType == "home" ? (
             <p
@@ -43,7 +57,7 @@ const Header = ({ pageType }) => {
                 "font-mono text-4xl md:text-4.5xl text-center tracking-tighter mb-11 md:mb-12 text-zinc-700 px-8 md:px-0"
               }
             >
-              The project demo by Vo Van Nghi
+              {lang.The_project_demo_by_Vo_Van_Nghi}
             </p>
           ) : (
             <></>
@@ -64,7 +78,7 @@ const Header = ({ pageType }) => {
                   : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
               }
             >
-              Blog
+              {lang.Blog}
             </a>
           </Link>
           <Link href="/author">
@@ -75,7 +89,7 @@ const Header = ({ pageType }) => {
                   : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
               }
             >
-              Author
+              {lang.Author}
             </a>
           </Link>
           <Link href="/about">
@@ -86,7 +100,7 @@ const Header = ({ pageType }) => {
                   : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
               }
             >
-              About
+              {lang.About}
             </a>
           </Link>
         </div>

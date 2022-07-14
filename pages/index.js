@@ -4,21 +4,23 @@ import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import en from "../public/en/index.json";
+import vn from "../public/vn/index.json";
 
-const Home = ({ allpost }) => {
+const Home = ({ locale, allpost }) => {
+  const lang = locale === "vn" ? vn : en;
   const pageType = "home";
-
   return (
     <>
       <Head>
-        <title>Home Page</title>
+        <title>{lang.Home_Page}</title>
       </Head>
-      <Header pageType={pageType} />
+      <Header pageType={pageType} lang={lang} />
       <div className="mx-4 md:mx-auto justify-center text-center flex md:w-868">
         <div className="md:w-full content-center pt-16 md:mt-0.5">
           <ul>
             {allpost.data.map((post) => (
-              <Post key={post.id} post={post} pageType={pageType} />
+              <Post key={post.id} post={post} pageType={pageType} lang={lang} />
             ))}
           </ul>
           <div className="w-full pb-24 mb-0.5 text-base">
@@ -38,18 +40,19 @@ const Home = ({ allpost }) => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
 };
 
 export default Home;
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ locale, query }) {
   let { page } = query;
   page ? (page = page) : (page = 1);
   const allpost = await getAllPost(page);
   return {
     props: {
+      locale: locale,
       allpost: allpost,
     },
   };

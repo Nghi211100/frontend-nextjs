@@ -1,5 +1,5 @@
 import "./app.css";
-function MyApp({ Component, pageProps, allcategories }) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />

@@ -2,8 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Date from "./Date";
 
-const Author = ({ authordata }) => {
-  console.log(authordata.attributes.photo.data.attributes);
+const Author = ({ authordata, lang }) => {
   let postCount = 0;
   authordata.attributes.posts.data.map(() => {
     postCount++;
@@ -33,11 +32,11 @@ const Author = ({ authordata }) => {
                 </div>
                 <div className="flex flex-col items-center md:text-left">
                   <div className="flex text-sm text-gray-600">
-                    <label className="pr-2">Join on: </label>
+                    <label className="pr-2">{lang.Join_on}: </label>
                     <Date dateString={authordata.attributes.createdAt} />
                   </div>
                   <div className="flex text-sm text-gray-600">
-                    <label className="pr-2">Total Posts: </label>
+                    <label className="pr-2">{lang.Total_posts}: </label>
                     {postCount}
                   </div>
                 </div>

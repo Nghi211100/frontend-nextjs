@@ -3,40 +3,58 @@ import React from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Post from "../../components/Post";
+import en from "../../public/en/index.json";
+import vn from "../../public/vn/index.json";
 import { getPostById, getIdPost } from "../../lib/post";
+import { useRouter } from "next/router";
 
-export async function getStaticProps({ params }) {
+// export async function getStaticProps({ params }) {
+//   const postdata = await getPostById(params.id);
+//   return {
+//     props: {
+//       postdata,
+//     },
+//   };
+// }
+// export async function getStaticPaths() {
+//   const paths = await getIdPost();
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+export async function getServerSideProps({ locale, params }) {
   const postdata = await getPostById(params.id);
   return {
     props: {
+      locale,
       postdata,
     },
   };
 }
-export async function getStaticPaths() {
-  const paths = await getIdPost();
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
-const pageType = ({ postdata }) => {
+const pageType = ({ locale, postdata }) => {
+  const lang = locale === "vn" ? vn : en;
   const pageType = "detailPost";
   return (
     <>
       <Head>
-        <title>Post Page</title>
+        <title>{lang.Post_Page}</title>
       </Head>
-      <Header pageType={pageType} />
+      <Header pageType={pageType} lang={lang} />
       <div className="mx-auto text-center justify-center flex pt-ab-header md:pt-44 md:mt-0.5 z-10">
         <div className="mx-auto text-center">
           <div>
-            <Post key={postdata.id} post={postdata} pageType={pageType} />
+            <Post
+              key={postdata.id}
+              post={postdata}
+              pageType={pageType}
+              lang={lang}
+            />
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
 };

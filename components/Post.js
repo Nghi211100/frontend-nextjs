@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Date from "./Date";
-const Post = ({ post, pageType }) => {
-  console.log(post);
+import { useRouter } from "next/router";
+const Post = ({ post, pageType, lang }) => {
+  const router = useRouter();
   return (
     <>
       {pageType == "home" ? (
@@ -97,7 +98,7 @@ const Post = ({ post, pageType }) => {
               </div>
             </div>
             <div className="pt-[6rem] mx-[3rem] pb-[8rem]">
-              <p className="text-lg font-bold pb-3">Share this post</p>
+              <p className="text-lg font-bold pb-3">{lang.Share_this_post}</p>
               <div className="flex justify-center">
                 <p>Twitter</p>
                 <p className="px-3">Facebook</p>
@@ -106,7 +107,7 @@ const Post = ({ post, pageType }) => {
               </div>
             </div>
             <div className="border-t-2 border-solid mx-32 md:mx-[34rem] mb-[6rem]"></div>
-            <div className="text-base pb-11">Written by</div>
+            <div className="text-base pb-11">{lang.Written_by}</div>
             <div className="text-2xl font-bold py-auto my-auto mb-[6rem]">
               {post.attributes.author.data.attributes.first_name}{" "}
               {post.attributes.author.data.attributes.last_name}{" "}

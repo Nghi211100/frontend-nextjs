@@ -8,6 +8,10 @@ const nextConfig = {
   env: {
     URL_API: "https://apidemostrapi.herokuapp.com",
   },
+  i18n: {
+    locales: ["en", "vn"],
+    defaultLocale: "en",
+  },
 };
 
 module.exports = nextConfig;
