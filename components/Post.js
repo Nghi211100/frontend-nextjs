@@ -15,7 +15,7 @@ const Post = ({ post, pageType, lang }) => {
                   className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
                   src={
                     process.env.URL_API +
-                    post.attributes.photo.data.attributes.url
+                    "post.attributes.photo.data.attributes.url"
                   }
                   alt=""
                 />
@@ -57,7 +57,7 @@ const Post = ({ post, pageType, lang }) => {
                 className="z-[99] w-auto h-auto max-h-full rounded shadow-[4px_4px_0px_rgb(0,0,0,10%)] md:shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
                 src={
                   process.env.URL_API +
-                  post.attributes.photo.data.attributes.url
+                  "post.attributes.photo.data.attributes.url"
                 }
                 alt=""
               />
@@ -91,7 +91,7 @@ const Post = ({ post, pageType, lang }) => {
                   className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
                   src={
                     process.env.URL_API +
-                    post.attributes.photo.data.attributes.url
+                    "post.attributes.photo.data.attributes.url"
                   }
                   alt=""
                 />
