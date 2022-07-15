@@ -42,16 +42,14 @@ const pageType = ({ locale, postdata }) => {
         <title>{lang.Post_Page}</title>
       </Head>
       <Header pageType={pageType} lang={lang} />
-      <div className="mx-auto text-center justify-center flex pt-ab-header md:pt-44 md:mt-0.5 z-10">
-        <div className="mx-auto text-center">
-          <div>
-            <Post
-              key={postdata.id}
-              post={postdata}
-              pageType={pageType}
-              lang={lang}
-            />
-          </div>
+      <div className="mx-auto text-center justify-center flex pt-[184px] md:pt-[201px] md:mt-0.5 z-10">
+        <div className="mx-auto text-center w-screen">
+          <Post
+            key={postdata.id}
+            post={postdata}
+            pageType={pageType}
+            lang={lang}
+          />
         </div>
       </div>
       <Footer lang={lang} />
