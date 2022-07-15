@@ -8,7 +8,7 @@ const Header = ({ pageType, lang }) => {
   const router = useRouter();
   return (
     <>
-      <div className="absolute top-0 right-8 w-16 flex justify-between z-[99]">
+      <div className="absolute text-[14px] md:text-[16px] top-2 right-4 md:right-8 w-12 md:w-16 flex justify-between z-[99]">
         <Link href={router.asPath} locale="en">
           <a className={router.locale == "en" ? "font-bold text-cyan-500" : ""}>
             EN

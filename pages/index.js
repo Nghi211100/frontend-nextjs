@@ -17,7 +17,7 @@ const Home = ({ locale, allpost }) => {
       </Head>
       <Header pageType={pageType} lang={lang} />
       <div className="mx-4 md:mx-auto justify-center text-center flex md:w-868">
-        <div className="md:w-full content-center pt-16 md:mt-0.5">
+        <div className="md:w-full content-center pt-16 md:pt-[4.05rem]">
           <ul>
             {allpost.data.map((post) => (
               <Post key={post.id} post={post} pageType={pageType} lang={lang} />
