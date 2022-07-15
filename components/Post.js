@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Date from "./Date";
+import ReactMarkdown from "react-markdown";
 const Post = ({ post, pageType, lang }) => {
   return (
     <>
@@ -57,39 +58,50 @@ const Post = ({ post, pageType, lang }) => {
           </Link>
         </div>
       ) : (
-        <div className="pb-4 w-screen">
-          <div className="flex justify-center w-[75%] mx-auto">
+        <div className="pb-4 md:max-w-[calc(660px_+_2rem)] px-4 md:px-0 mx-auto">
+          <div className="flex justify-center mx-auto">
             <img
               className="z-[99] rounded shadow-[4px_4px_0px_rgb(0,0,0,10%)] md:shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
               src={post.attributes.photo.data.attributes.url}
               alt=""
             />
           </div>
-          <div className="flex justify-center flex-col items-center mx-4 md:mx-64">
+          <div className="flex justify-center flex-col items-center md:px-4">
             <p className="pt-12 mt-1.5 text-gray-500">
               {post.attributes.categories.data.map(
                 (x) => x.attributes.category_name
               )}
             </p>
-            <h4 className="text-4.5xl md:text-5xl font-bold pt-9 pb-7 md:pb-10 md:mb-0 mb-0.5">
+            <h4 className="text-4.5xl md:text-5xl font-bold pt-[1.8rem] pb-[1.9rem] md:pb-[2.6rem] md:pt-[2.15rem] md:mb-0 mb-0.5 leading-[3.05rem]">
               {post.attributes.title}
             </h4>
-            <h4 className="text-xl md:text-2xl text-gray-500">
+            <h4 className="text-xl md:text-[1.55rem] text-gray-500 leading-[30px] md:leading-[34.8px]">
               {post.attributes.description}
             </h4>
-            <div className="pt-9 flex justify-center w-full items-center text-center">
-              <div className="text-lg py-auto my-auto mx-4 flex">
-                <div className=""></div>
-                {post.attributes.author.data.attributes.first_name}{" "}
-                {post.attributes.author.data.attributes.last_name}{" "}
+            <div className="pt-[2.15rem] flex justify-center w-full items-center text-center">
+              <div className="text-[16px] py-auto my-auto flex items-center ">
+                <div className="w-[32px] mr-2">
+                  <img
+                    className="w-auto h-auto max-h-full rounded-full"
+                    src={
+                      post.attributes.author.data.attributes.photo.data
+                        .attributes.url
+                    }
+                    alt=""
+                  />
+                </div>
+                <div>
+                  {post.attributes.author.data.attributes.first_name}{" "}
+                  {post.attributes.author.data.attributes.last_name}{" "}
+                </div>
               </div>
               <div className="text-lg text-slate-500 pl-1 my-auto">
                 <Date dateString={post.attributes.createdAt} />
               </div>
             </div>
-            <p className="pt-[4.5rem] md:text-lg text-left">
-              {post.attributes.content}
-            </p>
+            <div className="pt-[4.5rem] md:text-lg text-left">
+              <ReactMarkdown children={post.attributes.content} />
+            </div>
             <div className="w-full md:w-408 h-full flex justify-center pt-12">
               <img
                 className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
