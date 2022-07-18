@@ -3,12 +3,13 @@ import React from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Account from "./Account";
 
-const Header = ({ pageType, lang }) => {
+const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
   const router = useRouter();
   return (
     <>
-      <div className="absolute text-[14px] md:text-[16px] top-2 right-4 md:right-8 w-12 md:w-16 flex justify-between z-[99]">
+      <div className="absolute text-[14px] md:text-[16px] top-2 left-4 md:left-8 w-12 md:w-16 flex justify-between z-[99]">
         <Link href={router.asPath} locale="en">
           <a className={router.locale == "en" ? "font-bold text-cyan-500" : ""}>
             EN
@@ -19,6 +20,13 @@ const Header = ({ pageType, lang }) => {
             VN
           </a>
         </Link>
+      </div>
+      <div className="absolute md:text-[16px] top-2 right-4 md:right-8 w-12 md:w-max flex items-center justify-between z-[99]">
+        <Account
+          session={session}
+          handleClickAcountDetail={handleClickAcountDetail}
+          header={true}
+        />
       </div>
       <div
         className={
