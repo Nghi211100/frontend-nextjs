@@ -8,6 +8,8 @@ import { supabase } from "../utils/supabaseClient";
 import Todo from "../components/Todo";
 import AddTodo from "../components/AddTodo";
 import Footer from "../components/Footer";
+import Auth from "../components/Auth";
+import Account from "../components/Account";
 
 const todoList = ({ locale, todos }) => {
   const lang = locale === "vn" ? vn : en;

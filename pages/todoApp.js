@@ -15,6 +15,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Todo from "../components/Todo";
 import AddTodo from "../components/AddTodo";
+import Auth from "../components/Auth";
+import Account from "../components/Account";
 
 const Home = ({ locale }) => {
   const lang = locale === "vn" ? vn : en;
