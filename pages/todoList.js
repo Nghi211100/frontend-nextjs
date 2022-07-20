@@ -55,54 +55,58 @@ const todoList = ({ locale, todos }) => {
     setWorks(works.map((x) => (x.id == item.id ? item : x)));
   };
   return (
-    <div>
-      <Head>
-        <title>Todo List</title>
-      </Head>
-      <Header
-        pageType={pageType}
-        lang={lang}
-        session={session}
-        handleClickAcountDetail={handleClickAcountDetail}
-      />
-      <div className="md:mx-auto justify-center text-center flex md:w-868">
-        <div className="w-[95%] md:w-full content-center py-3 md:p-16 md:pt-[4.05rem]">
-          <ul className="w-full flex-col justify-center items-center shadow py-5">
-            <p className="text-3xl text-zinc-600 font-bold pb-5">List Works</p>
-            {/* {loading == true ? (
-              <div>Data fetching, please wait ...</div>
-            ) : (
-              <>
-                {works.map((work, index) => (
-                  <Todo
-                    key={index + 1}
-                    work={work}
-                    handleupdateStatus={handleupdateStatus}
-                    removeWork={removeWork}
-                    updateName={updateValueName}
-                    index={index}
-                  />
-                ))}
-              </>
-            )} */}
-            {works.map((work, index) => (
-              <Todo
-                key={index + 1}
-                work={work}
-                handleupdateStatus={handleupdateStatus}
-                removeWork={removeWork}
-                updateName={updateValueName}
-                index={index}
+    <>
+      {acountDetail ? (
+        <>
+          <Account
+            key={session.user.id}
+            session={session}
+            handleClickAcountDetail={handleClickAcountDetail}
+          />
+        </>
+      ) : (
+        <>
+          {!session ? (
+            <Auth />
+          ) : (
+            <>
+              <Head>
+                <title>Todo List</title>
+              </Head>
+              <Header
+                pageType={pageType}
+                lang={lang}
+                session={session}
+                handleClickAcountDetail={handleClickAcountDetail}
               />
-            ))}
+              <div className="md:mx-auto justify-center text-center flex md:w-868">
+                <div className="w-[95%] md:w-full content-center py-3 md:p-16 md:pt-[4.05rem]">
+                  <ul className="w-full flex-col justify-center items-center shadow py-5">
+                    <p className="text-3xl text-zinc-600 font-bold pb-5">
+                      List Works
+                    </p>
+                    {works.map((work, index) => (
+                      <Todo
+                        key={index + 1}
+                        work={work}
+                        handleupdateStatus={handleupdateStatus}
+                        removeWork={removeWork}
+                        updateName={updateValueName}
+                        index={index}
+                      />
+                    ))}
 
-            <AddTodo ButtonAdd={handleButtonAdd} />
-          </ul>
-          <div></div>
-        </div>
-      </div>
-      <Footer lang={lang} />
-    </div>
+                    <AddTodo ButtonAdd={handleButtonAdd} />
+                  </ul>
+                  <div></div>
+                </div>
+              </div>
+              <Footer lang={lang} />
+            </>
+          )}
+        </>
+      )}
+    </>
   );
 };
 
