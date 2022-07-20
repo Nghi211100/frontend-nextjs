@@ -15,12 +15,12 @@ const Todo = ({ work, handleupdateStatus, removeWork, updateName, index }) => {
     valueName ? updateName(id, valueName) : alert("Please enter name!");
   };
   return (
-    <div className="flex w-3/4 items-center mx-auto">
+    <div className="flex w-[97%] md:w-3/4 items-center mx-auto">
       <div
         className={
           getvalueComplete == true
-            ? "flex w-[90%] justify-between items-center mx-auto shadow rounded px-2 py-1 m-2 bg-cyan-50"
-            : "flex w-[90%] justify-between items-center mx-auto shadow rounded px-2 py-1 m-2 bg-red-50"
+            ? "flex w-[95%] md:w-[90%] justify-between items-center mx-auto shadow rounded px-2 py-1 m-2 bg-cyan-50"
+            : "flex w-[95%] md:w-[90%] justify-between items-center mx-auto shadow rounded px-2 py-1 m-2 bg-red-50"
         }
       >
         <div className="text-[13px]">{index + 1}</div>
@@ -47,7 +47,7 @@ const Todo = ({ work, handleupdateStatus, removeWork, updateName, index }) => {
         </div>
       </div>
       <div
-        className="shadow rounded px-2 py-1 cursor-pointer mx-2"
+        className="text-[13px] md:text-[15px] shadow rounded px-2 py-1 cursor-pointer mx-2 bg-green-300"
         onClick={
           edit == true
             ? () => {
@@ -59,7 +59,7 @@ const Todo = ({ work, handleupdateStatus, removeWork, updateName, index }) => {
         {edit == true ? "Save" : "Edit"}
       </div>
       <div
-        className="shadow rounded px-2 py-1 cursor-pointer"
+        className="text-[12px] md:text-[15px] shadow rounded px-2 py-1 cursor-pointer bg-red-400"
         onClick={() => handleClickRemove(work.id)}
       >
         X

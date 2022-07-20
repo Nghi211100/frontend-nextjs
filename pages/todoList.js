@@ -1,26 +1,20 @@
 import Head from "next/head";
+import React from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import en from "../public/en/index.json";
 import vn from "../public/vn/index.json";
 import { useState, useEffect } from "react";
 import { supabase } from "../utils/supabaseClient";
-import {
-  getWorks as listWorks,
-  updateStatus,
-  addNewWork,
-  removeOneWork,
-  updateName,
-} from "../redux/actions/workAction";
-import { useDispatch, useSelector } from "react-redux";
 import Todo from "../components/Todo";
 import AddTodo from "../components/AddTodo";
+import Footer from "../components/Footer";
 
-const Home = ({ locale }) => {
+const todoList = ({ locale, todos }) => {
   const lang = locale === "vn" ? vn : en;
   const pageType = "home";
   const [session, setSession] = useState(null);
   const [acountDetail, setAccountDetail] = useState(false);
+  const [works, setWorks] = useState(todos);
 
   const handleClickAcountDetail = () => {
     setAccountDetail(!acountDetail);
@@ -32,29 +26,38 @@ const Home = ({ locale }) => {
       setSession(session);
     });
   }, []);
-  const dispatch = useDispatch();
-  const getWorks = useSelector((state) => state.workReducer);
-  const { works, loading } = getWorks;
-  useEffect(() => {
-    dispatch(listWorks());
-  }, [dispatch]);
-
-  const handleupdateStatus = (id, valueComplete) => {
-    dispatch(updateStatus(id, valueComplete));
+  const handleupdateStatus = async (id, valueComplete) => {
+    await supabase
+      .from("work")
+      .update({ complete: !valueComplete })
+      .eq("id", id);
   };
-  const handleButtonAdd = (valueName) => {
-    dispatch(addNewWork(valueName));
+  const handleButtonAdd = async (valueName) => {
+    console.log("okey add");
+    const { data } = await supabase.from("work").insert([{ name: valueName }]);
+    let item;
+    data.map((x) => (item = x));
+    setWorks([...works, item]);
   };
-  const removeWork = (id) => {
-    dispatch(removeOneWork(id));
+  const removeWork = async (id) => {
+    const { data } = await supabase.from("work").delete().eq("id", id);
+    let item;
+    data.map((x) => (item = x));
+    setWorks(works.filter((x) => x.id !== item.id));
   };
-  const updateValueName = (id, valueName) => {
-    dispatch(updateName(id, valueName));
+  const updateValueName = async (id, valueName) => {
+    const { data } = await supabase
+      .from("work")
+      .update({ name: valueName })
+      .eq("id", id);
+    let item;
+    data.map((x) => (item = x));
+    setWorks(works.map((x) => (x.id == item.id ? item : x)));
   };
   return (
-    <>
+    <div>
       <Head>
-        <title>Todo App</title>
+        <title>Todo List</title>
       </Head>
       <Header
         pageType={pageType}
@@ -66,7 +69,7 @@ const Home = ({ locale }) => {
         <div className="w-[95%] md:w-full content-center py-3 md:p-16 md:pt-[4.05rem]">
           <ul className="w-full flex-col justify-center items-center shadow py-5">
             <p className="text-3xl text-zinc-600 font-bold pb-5">List Works</p>
-            {loading == true ? (
+            {/* {loading == true ? (
               <div>Data fetching, please wait ...</div>
             ) : (
               <>
@@ -81,7 +84,17 @@ const Home = ({ locale }) => {
                   />
                 ))}
               </>
-            )}
+            )} */}
+            {works.map((work, index) => (
+              <Todo
+                key={index + 1}
+                work={work}
+                handleupdateStatus={handleupdateStatus}
+                removeWork={removeWork}
+                updateName={updateValueName}
+                index={index}
+              />
+            ))}
 
             <AddTodo ButtonAdd={handleButtonAdd} />
           </ul>
@@ -89,8 +102,17 @@ const Home = ({ locale }) => {
         </div>
       </div>
       <Footer lang={lang} />
-    </>
+    </div>
   );
 };
 
-export default Home;
+export default todoList;
+
+export async function getStaticProps() {
+  const { data } = await supabase.from("work").select("*");
+  return {
+    props: {
+      todos: data,
+    },
+  };
+}

@@ -1,4 +1,4 @@
-import { getAllPost } from "../lib/post";
+import { getAllPost } from "../api/post";
 import Post from "../components/Post";
 import Head from "next/head";
 import Link from "next/link";

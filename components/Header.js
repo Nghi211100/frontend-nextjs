@@ -92,15 +92,15 @@ const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
                 {lang.Blog}
               </a>
             </Link>
-            <Link href="/about">
+            <Link href="/todoList">
               <a
                 className={
-                  router.pathname == "/about"
+                  router.pathname == "/todoList"
                     ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                     : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                 }
               >
-                {lang.About}
+                ToDo List
               </a>
             </Link>
             <Link href="/todoApp">
