@@ -68,10 +68,10 @@ export const addNewWork = (valueName) => async (dispatch) => {
 };
 export const removeOneWork = (id) => async (dispatch) => {
   try {
-    await supabase.from("work").delete().eq("id", id);
+    const { data } = await supabase.from("work").delete().eq("id", id);
     dispatch({
       type: actionType.REMOVE_WORK_SUCCESS,
-      payload: "Delete success!",
+      payload: data,
     });
   } catch (error) {
     dispatch({

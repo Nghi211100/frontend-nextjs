@@ -33,8 +33,8 @@ const Home = ({ locale }) => {
     });
   }, []);
   const dispatch = useDispatch();
-  const getAllWorks = useSelector((state) => state.allWorkReducer);
-  const { works, loading } = getAllWorks;
+  const getWorks = useSelector((state) => state.workReducer);
+  const { works, loading } = getWorks;
   useEffect(() => {
     dispatch(listWorks());
   }, [dispatch]);
@@ -70,13 +70,14 @@ const Home = ({ locale }) => {
               <div>Data fetching, please wait ...</div>
             ) : (
               <>
-                {works.map((work) => (
+                {works.map((work, index) => (
                   <Todo
-                    key={work.id}
+                    key={index + 1}
                     work={work}
                     handleupdateStatus={handleupdateStatus}
                     removeWork={removeWork}
                     updateName={updateValueName}
+                    index={index}
                   />
                 ))}
               </>

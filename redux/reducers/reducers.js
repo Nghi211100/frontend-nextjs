@@ -1,18 +1,8 @@
 import { combineReducers } from "redux";
-import {
-  allWorkReducer,
-  updateReducer,
-  addWorkReducer,
-  removeWorkReducer,
-  updateNameReducer,
-} from "./workReducer";
+import { workReducer } from "./workReducer";
 
 const reducer = combineReducers({
-  allWorkReducer,
-  updateReducer,
-  addWorkReducer,
-  removeWorkReducer,
-  updateNameReducer,
+  workReducer,
 });
 
 export default reducer;

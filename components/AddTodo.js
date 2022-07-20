@@ -3,16 +3,14 @@ import React, { useState } from "react";
 const AddTodo = ({ ButtonAdd }) => {
   const [workName, setWorkName] = useState("");
   const handleButtonAdd = () => {
-    ButtonAdd(workName);
+    workName ? ButtonAdd(workName) : alert("Please enter name!");
     setWorkName("");
   };
-  const handleChangName = (value) => {
-    setWorkName(value);
-  };
+
   return (
     <div className="py-5">
       <input
-        onChange={(e) => handleChangName(e.target.value)}
+        onChange={(e) => setWorkName(e.target.value)}
         className="border rounded mr-5 py-2 px-3"
         type="text"
         value={workName}

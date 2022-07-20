@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Todo = ({ work, handleupdateStatus, removeWork, updateName }) => {
+const Todo = ({ work, handleupdateStatus, removeWork, updateName, index }) => {
   const [getvalueComplete, setValueComplete] = useState(work.complete);
   const [edit, setEdit] = useState(false);
   const [valueName, setValueName] = useState(work.name);
@@ -12,7 +12,7 @@ const Todo = ({ work, handleupdateStatus, removeWork, updateName }) => {
     removeWork(id);
   };
   const handleClickSave = (id) => {
-    updateName(id, valueName);
+    valueName ? updateName(id, valueName) : alert("Please enter name!");
   };
   return (
     <div className="flex w-3/4 items-center mx-auto">
@@ -23,7 +23,7 @@ const Todo = ({ work, handleupdateStatus, removeWork, updateName }) => {
             : "flex w-[90%] justify-between items-center mx-auto shadow rounded px-2 py-1 m-2 bg-red-50"
         }
       >
-        <div className="text-[13px]">{work.id}</div>
+        <div className="text-[13px]">{index + 1}</div>
         {edit == true ? (
           <>
             <input
