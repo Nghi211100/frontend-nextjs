@@ -80,7 +80,7 @@ const Home = ({ locale }) => {
                 <div className="w-[95%] md:w-full content-center py-3 md:p-16 md:pt-[4.05rem]">
                   <ul className="w-full flex-col justify-center items-center shadow py-5">
                     <p className="text-3xl text-zinc-600 font-bold pb-5">
-                      List Works
+                      List Works use redux
                     </p>
                     {loading == true ? (
                       <div>Data fetching, please wait ...</div>
