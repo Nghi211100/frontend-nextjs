@@ -29,18 +29,29 @@ const todoList = ({ locale, todos }) => {
     });
   }, []);
   const handleupdateStatus = async (id, valueComplete) => {
-    await supabase
+    const { data } = await supabase
       .from("work")
       .update({ complete: !valueComplete })
       .eq("id", id);
+    let item;
+    data.map((x) => (item = x));
+    setWorks(works.map((x) => (x.id == item.id ? item : x)));
   };
+
   const handleButtonAdd = async (valueName) => {
-    console.log("okey add");
     const { data } = await supabase.from("work").insert([{ name: valueName }]);
     let item;
     data.map((x) => (item = x));
     setWorks([...works, item]);
   };
+
+  const [countUnComplete, setCountUncomplete] = useState(0);
+  useEffect(() => {
+    let count = 0;
+    works.map((work) => (work.complete == false ? (count = count + 1) : count));
+    setCountUncomplete(count);
+  }, [works]);
+
   const removeWork = async (id) => {
     const { data } = await supabase.from("work").delete().eq("id", id);
     let item;
@@ -80,6 +91,7 @@ const todoList = ({ locale, todos }) => {
                 lang={lang}
                 session={session}
                 handleClickAcountDetail={handleClickAcountDetail}
+                countUnCompleteList={countUnComplete}
               />
               <div className="md:mx-auto justify-center text-center flex md:w-868">
                 <div className="w-[95%] md:w-full content-center py-3 md:p-16 md:pt-[4.05rem]">

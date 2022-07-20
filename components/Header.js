@@ -1,12 +1,33 @@
 import Link from "next/link";
-import React from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Account from "./Account";
+import Notify from "./Notify";
+import { getWorks as listWorks } from "../redux/actions/workAction";
 
 const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const getWorks = useSelector((state) => state.workReducer);
+  const { works } = getWorks;
+  useEffect(() => {
+    dispatch(listWorks());
+  }, [dispatch]);
+
+  const [countUnComplete, setCountUncomplete] = useState(0);
+  useEffect(() => {
+    let count = 0;
+    works
+      ? works.map((work) =>
+          work.complete == false ? (count = count + 1) : count
+        )
+      : (count = 0);
+    setCountUncomplete(count);
+  }, [works]);
+
   return (
     <>
       <div className="absolute text-[14px] md:text-[16px] top-2 left-4 md:left-8 w-12 md:w-16 flex justify-between z-[99]">
@@ -92,28 +113,34 @@ const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
                 {lang.Blog}
               </a>
             </Link>
-            <Link href="/todoList">
-              <a
-                className={
-                  router.pathname == "/todoList"
-                    ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
-                    : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
-                }
-              >
-                ToDo List
-              </a>
-            </Link>
-            <Link href="/todoApp">
-              <a
-                className={
-                  router.pathname == "/todoApp"
-                    ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
-                    : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
-                }
-              >
-                Todo App
-              </a>
-            </Link>
+            <div className="relative flex items-center">
+              <Link href="/todoList">
+                <a
+                  className={
+                    router.pathname == "/todoList"
+                      ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                      : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                  }
+                >
+                  ToDo List
+                </a>
+              </Link>
+            </div>
+
+            <div className="relative flex items-center">
+              <Link href="/todoApp">
+                <a
+                  className={
+                    router.pathname == "/todoApp"
+                      ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                      : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
+                  }
+                >
+                  Todo App
+                </a>
+              </Link>
+              <Notify countUnComplete={countUnComplete} />
+            </div>
           </div>
           <div className="md:pt-1">
             <FontAwesomeIcon
