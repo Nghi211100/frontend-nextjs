@@ -9,13 +9,18 @@ const Post = ({ post, pageType, lang }) => {
         <div className="flex pb-24 md:mb-0.5">
           <Link key={post.id} href={`/blog/${post.id}`}>
             <a className="w-full flex-col md:flex-row flex h-full md:h-[278px] md:justify-between">
-              <div className="w-full md:w-408 h-full flex justify-center">
-                <img
-                  className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
-                  src={post.attributes.photo.data.attributes.url}
-                  alt=""
-                />
-              </div>
+              {post.attributes.photo.data ? (
+                <div className="w-full md:w-408 h-full flex justify-center">
+                  <img
+                    className="w-auto h-auto max-h-full rounded shadow-[8px_8px_0px_rgb(0,0,0,10%)]"
+                    src={post.attributes.photo.data.attributes.url}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+
               <div className="w-full md:w-408 h-full md:relative pt-4 md:pt-0">
                 <p className="w-max text-slate-500 pt-[0.98rem] md:pt-0 flex pb-4 md:pb-3.5">
                   {post.attributes.categories.data.map(

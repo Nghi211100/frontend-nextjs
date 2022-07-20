@@ -73,7 +73,7 @@ export default function Account({ session, handleClickAcountDetail, header }) {
     <>
       {header == true ? (
         <>
-          <Avatar url={avatar_url} size={30} header={true} />
+          <Avatar url={avatar_url} header={true} />
           <label
             className="pr-2 font-bold hover:cursor-pointer"
             htmlFor="username"
@@ -132,7 +132,6 @@ export default function Account({ session, handleClickAcountDetail, header }) {
             <div className="m-2 p-2 text-bold text-center flex justify-evenly">
               <Avatar
                 url={avatar_url}
-                size={150}
                 header={false}
                 onUpload={(url) => {
                   setAvatarUrl(url);

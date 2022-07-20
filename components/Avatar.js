@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabaseClient";
 
-export default function Avatar({ url, size, onUpload, header }) {
+export default function Avatar({ url, onUpload, header }) {
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -61,14 +61,10 @@ export default function Avatar({ url, size, onUpload, header }) {
             <img
               src={avatarUrl}
               alt="Avatar"
-              className="rounded-full"
-              style={{ height: size, width: size }}
+              className="rounded-full md:h-[30px] md:w-[30px] h-[15px] w-[15px]"
             />
           ) : (
-            <div
-              className="avatar no-image"
-              style={{ height: size, width: size }}
-            />
+            <div className="md:h-[30px] md:w-[30px] h-[15px] w-[15px]" />
           )}
         </div>
       ) : (
@@ -77,16 +73,12 @@ export default function Avatar({ url, size, onUpload, header }) {
             <img
               src={avatarUrl}
               alt="Avatar"
-              className="avatar image"
-              style={{ height: size, width: size }}
+              className="md:h-[150px] md:w-[150px] h-[75px] w-[75px]"
             />
           ) : (
-            <div
-              className="avatar no-image"
-              style={{ height: size, width: size }}
-            />
+            <div className="md:h-[150px] md:w-[150px] h-[75px] w-[75px]" />
           )}
-          <div style={{ width: size }}>
+          <div className="md:h-[150px] md:w-[150px] h-[75px] w-[75px]">
             <label className="button primary block" htmlFor="single">
               {uploading ? "Uploading ..." : "Upload"}
             </label>

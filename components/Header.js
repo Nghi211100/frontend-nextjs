@@ -21,7 +21,7 @@ const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
           </a>
         </Link>
       </div>
-      <div className="absolute md:text-[16px] top-2 right-4 md:right-8 w-12 md:w-max flex items-center justify-between z-[99]">
+      <div className="absolute md:text-[16px] text-[11px] top-2 right-4 md:right-8 md:w-max flex items-center justify-between z-[99]">
         <Account
           session={session}
           handleClickAcountDetail={handleClickAcountDetail}
@@ -95,7 +95,7 @@ const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
             <Link href="/about">
               <a
                 className={
-                  router.pathname == "/styleguide"
+                  router.pathname == "/about"
                     ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                     : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                 }
@@ -103,15 +103,15 @@ const Header = ({ pageType, lang, session, handleClickAcountDetail }) => {
                 {lang.About}
               </a>
             </Link>
-            <Link href="/about">
+            <Link href="/todoApp">
               <a
                 className={
-                  router.pathname == "/about"
+                  router.pathname == "/todoApp"
                     ? "font-bold px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                     : "px-2 py-1 hover:rounded-2xl hover:bg-red-100"
                 }
               >
-                {lang.Style_Guide}
+                Todo App
               </a>
             </Link>
           </div>
