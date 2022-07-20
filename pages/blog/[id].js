@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import Post from "../../components/Post";
 import en from "../../public/en/index.json";
 import vn from "../../public/vn/index.json";
-import { getPostById, getIdPost } from "../../lib/post";
+import { getPostById, getIdPost } from "../../api/post";
 import { useRouter } from "next/router";
 
 // export async function getStaticProps({ params }) {
